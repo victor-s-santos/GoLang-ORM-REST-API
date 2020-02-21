@@ -15,6 +15,14 @@ type User struct {
 	Email string
 }
 
+func InitialMigrations(){
+	db, err = gorm.Open("sqlite3", "first_test.db")
+	if err != nil{
+		fmt.Println(err.Error())
+		panic("Error when trying to connect to database.")
+	}
+}
+
 func Users(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w, "Endpoint users")
 }
