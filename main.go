@@ -25,6 +25,6 @@ func handleRequests(){
 
 func main(){
 	fmt.Println("First GO ORM application")
-
+	InitialMigration()
 	handleRequests()
 }

@@ -8,6 +8,7 @@ import (
 )
 
 var db *gorm.DB
+var err error
 
 type User struct {
 	gorm.Model
@@ -15,12 +16,14 @@ type User struct {
 	Email string
 }
 
-func InitialMigrations(){
+func InitialMigration(){
 	db, err = gorm.Open("sqlite3", "first_test.db")
 	if err != nil{
 		fmt.Println(err.Error())
 		panic("Error when trying to connect to database.")
 	}
+	defer db.Close()
+	db.Automigrate(&User{})
 }
 
 func Users(w http.ResponseWriter, r *http.Request){
