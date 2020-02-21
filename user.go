@@ -12,3 +12,7 @@ func Users(w http.ResponseWriter, r *http.Request){
 func NewUser(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w, "New User Endpoint")
 }
+
+func deleteUser(w http.ResponseWriter, r *http.Request){
+	fmt.Fprintf(w, "Delete User Endpoint")
+}
