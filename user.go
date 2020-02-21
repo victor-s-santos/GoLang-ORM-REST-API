@@ -64,6 +64,14 @@ func DeleteUser(w http.ResponseWriter, r *http.Request){
 		panic("Could not connect to the database")
 	}
 	defer db.Close()
+
+	vars := mux.Vars(r)
+	name := vars["name"]
+
+	var user User
+	db.Where("name = ?", name).Find(&user)
+	db.Delete(&user)
+	fmt.Fprint(w, "The user has been successfully deleted!")
 	//fmt.Fprintf(w, "Delete User Endpoint")
 }
 
