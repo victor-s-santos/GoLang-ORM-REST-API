@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"github.com/jinzhu/gorm"
 	_"github.com/jinzhu/gorm/dialects/sqlite"
+	"encoding/json"
 )
 
 var db *gorm.DB
@@ -23,7 +24,7 @@ func InitialMigration(){
 		panic("Error when trying to connect to database.")
 	}
 	defer db.Close()
-	db.Automigrate(&User{})
+	db.AutoMigrate(&User{})
 }
 
 func Users(w http.ResponseWriter, r *http.Request){
@@ -36,6 +37,7 @@ func Users(w http.ResponseWriter, r *http.Request){
 
 	var users []User
 	db.Find(&users)
+
 	json.NewEncoder(w).Encode(users)
 }
 
