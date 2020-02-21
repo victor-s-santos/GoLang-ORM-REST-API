@@ -27,7 +27,16 @@ func InitialMigration(){
 }
 
 func Users(w http.ResponseWriter, r *http.Request){
-	fmt.Fprintf(w, "Endpoint users")
+	//fmt.Fprintf(w, "Endpoint users")
+	db, err = gorm.Open("sqlite3", "first_test.db")
+	if err != nil{
+		panic("Could not connect to the database")
+	}
+	defer db.Close()
+
+	var users []User
+	db.Find(&users)
+	json.NewEncoder(w).Encode(users)
 }
 
 func NewUser(w http.ResponseWriter, r *http.Request){
