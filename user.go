@@ -6,5 +6,9 @@ import (
 )
 
 func Users(w http.ResponseWriter, r *http.Request){
-	fmt.Fprint(w, "Endpoint users")
+	fmt.Fprintf(w, "Endpoint users")
+}
+
+func NewUser(w http.ResponseWriter, r *http.Request){
+	fmt.Fprintf(w, "New User Endpoint")
 }
