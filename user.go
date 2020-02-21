@@ -3,7 +3,11 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"github.com/jinzhu/gorm"
+	_"github.com/jinzhu/gorm/dialects/sqlite"
 )
+
+var db *gorm.DB
 
 func Users(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w, "Endpoint users")
