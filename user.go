@@ -47,6 +47,13 @@ func NewUser(w http.ResponseWriter, r *http.Request){
 		panic("Could not connect to the database")
 	}
 	defer db.Close()
+
+	vars := mux.Vars(r)
+	name := vars["name"]
+	email := vars["email"]
+
+	db.Create(&User{Name: name, Email: email})
+	fmt.Fprintf(w, "The new user has been successfully created!")
 	//fmt.Fprintf(w, "New User Endpoint")
 }
 
