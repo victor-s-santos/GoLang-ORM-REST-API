@@ -9,6 +9,12 @@ import (
 
 var db *gorm.DB
 
+type User struct {
+	gorm.Model
+	Name string
+	Email string
+}
+
 func Users(w http.ResponseWriter, r *http.Request){
 	fmt.Fprintf(w, "Endpoint users")
 }
